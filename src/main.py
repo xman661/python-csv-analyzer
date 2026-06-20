@@ -2,15 +2,16 @@ import sys
 import os
 
 sys.path.insert(0,os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 from src.data_loader import load_csv, get_column
 from src.analyzer import basic_stats, group_mean, filter_by_condition, missing_rate
 from src.visualizer import plot_temperature_trend, plot_bar_comparison, plot_histogram
 
 def main():
-    os.makedirs('output',exist_ok=True)
+    os.makedirs(os.path.join(BASE_DIR, 'output'), exist_ok=True)
 
-    data = load_csv('data/weather.csv')
+    data = load_csv(os.path.join(BASE_DIR, 'data/weather.csv'))
     if not data:
         print(f'数据为空，程序退出')
         return
@@ -39,7 +40,7 @@ def main():
     plot_bar_comparison(cities,avgs,title='各城市平均最高温度对比', save_path="output/bar_comparsion.png")
     plot_histogram(temp_max,bins=10,title='最高温度分布直方图',save_path="output/histogram.png")
 
-    hot_days = filter_by_condition(data,temp_max,8,operator='gt')
+    hot_days = filter_by_condition(data,'temp_max',8,operator='gt')
     for row in hot_days:
         print(f"  {row['date']} {row['city']}: {row['temp_max']}°C")
 

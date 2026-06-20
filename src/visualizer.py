@@ -1,3 +1,10 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+# 强制接管 Matplotlib 全局字体，解决中文乱码之咒
+plt.rcParams['font.sans-serif'] = ['SimHei'] # Windows 常用黑体，Mac 可改用 'Arial Unicode MS'
+plt.rcParams['axes.unicode_minus'] = False   # 解决负号显示为方块的问题
+
 def plot_temperature_trend(datas,temps,title='温度变化趋势',save_path="output/temperature_trend.png"):
     plt.figure(figsize=(12,5))
     plt.plot(datas,temps,marker='o',linestyle='-',color='tomato',markersize=4,linewidth=2)
