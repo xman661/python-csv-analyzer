@@ -25,7 +25,7 @@ def plot_temperature_trend(datas,temps,title='温度变化趋势',save_path="out
     plt.close()
     print(f'温度变化趋势图已保存在{save_path}')
 
-def plot_bar_comparsion(labels,values,title='对比柱状图',save_path="output/bar_comparsion.png",color='steelblue'):
+def plot_bar_comparison(labels,values,title='对比柱状图',save_path="output/bar_comparsion.png",color='steelblue'):
     plt.figure(figsize=(8, 5))
     bars = plt.bar(labels, values, color=color,edgecolor='black',alpha=0.8)
     for bar in bars:
